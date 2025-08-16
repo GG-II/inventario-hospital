@@ -12,9 +12,10 @@ export const usuarios = sqliteTable('usuarios', {
   created_at: text('created_at').default(sql`CURRENT_TIMESTAMP`)
 });
 
-// Tabla de áreas (para el demo)
-export const areas = sqliteTable('areas', {
+// Tabla de subgrupos SICOIN (para el demo)
+export const subgrupos = sqliteTable('subgrupos', {
   id: integer('id').primaryKey({ autoIncrement: true }),
+  codigo: text('codigo').notNull().unique(), // 321, 322, etc.
   nombre: text('nombre').notNull(),
   descripcion: text('descripcion'),
   created_at: text('created_at').default(sql`CURRENT_TIMESTAMP`)
