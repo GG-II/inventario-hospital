@@ -9,6 +9,7 @@ interface AuthenticatedRequest extends FastifyRequest {
         nombre: string;
         rol: string;
     };
+    params: any; // Esto permite acceder a request.params.id sin errores
 }
 
 export async function apiRoutes(fastify: FastifyInstance) {
@@ -41,7 +42,7 @@ export async function apiRoutes(fastify: FastifyInstance) {
     });
 
     // GET /api/subgrupos/:id - Obtener un subgrupo específico
-    fastify.get<{ Params: { id: string } }>('/subgrupos/:id', async (request: AuthenticatedRequest, reply) => {
+    fastify.get('/subgrupos/:id', async (request: AuthenticatedRequest, reply) => {
         try {
             const { id } = request.params;
             const subgrupoId = parseInt(id);
